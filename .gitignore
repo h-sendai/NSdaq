@@ -3,6 +3,7 @@
 *.d
 *~
 *.pyc
+core.*
 __pycache__
 sandbox/*
 !sandbox/README.md
