@@ -10,4 +10,4 @@ all: $(SUBDIRS)
 clean:
 	@set -e; for dir in $(SUBDIRS); do $(MAKE) -C $${dir} $@; done
 	@rm -f omninames-*
-	@rm -f rtc.conf
+	@rm -f rtc.conf .confFilePath
