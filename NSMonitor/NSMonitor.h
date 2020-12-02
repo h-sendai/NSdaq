@@ -20,8 +20,6 @@
 #include "TStyle.h"
 #include "TApplication.h"
 
-#include "SampleData.h"
-
 using namespace RTC;
 
 class NSMonitor
