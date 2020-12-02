@@ -6,3 +6,8 @@
 __pycache__
 sandbox/*
 !sandbox/README.md
+autogen
+NSLogger/NSLoggerComp
+NSMonitor/NSMonitorComp
+NSReader/NSReaderComp
+Dispatcher/DispatcherComp
