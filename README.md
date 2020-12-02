@@ -41,7 +41,7 @@ enabled=1となっている箇所が１か所あるので
 enalbed=0に変更（不用意にepelからパッケージをダウンロード、あるいは
 既存パッケージをアップデートしないようにするため）
 
-yum install --enablerepo=epel git cmake3 gcc-c++ gcc binutils libX11-devel libXpm-devel libXft-devel libXext-devel openssl-devel
+root# yum install --enablerepo=epel git cmake3 gcc-c++ gcc binutils libX11-devel libXpm-devel libXft-devel libXext-devel openssl-devel
 ```
 
 #### ROOTのダウンロードと設定
