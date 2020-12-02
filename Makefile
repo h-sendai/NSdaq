@@ -1,5 +1,6 @@
 SUBDIRS += NSReader
 SUBDIRS += NSLogger
+SUBDIRS += NSMonitor
 
 .PHONY: $(SUBDIRS)
 
@@ -8,5 +9,5 @@ all: $(SUBDIRS)
 
 clean:
 	@set -e; for dir in $(SUBDIRS); do $(MAKE) -C $${dir} $@; done
-	@rm -f omninames-*.bak omninames-*.log
+	@rm -f omninames-*
 	@rm -f rtc.conf
