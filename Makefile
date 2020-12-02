@@ -1,6 +1,7 @@
 SUBDIRS += NSReader
 SUBDIRS += NSLogger
 SUBDIRS += NSMonitor
+SUBDIRS += Dispatcher
 
 .PHONY: $(SUBDIRS)
 
