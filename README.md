@@ -33,6 +33,7 @@ https://daqmw.kek.jp/ と通信できる環境ではこれでDAQ-Middlewareの�
 sudo mkdir -p /home/daq
 sudo chown daq:daq /home/daq
 
+cd /home/daq
 git clone https://github.com/h-sendai/NSdaq.git
 ```
 
