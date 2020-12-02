@@ -26,8 +26,8 @@
                         <outPort>nsreader_out</outPort>
                     </outPorts>
                     <params>
-                        <param pid="srcAddr">127.0.0.1</param>
-                        <param pid="srcPort">2222</param>
+                        <param pid="srcAddr">192.168.10.16</param>
+                        <param pid="srcPort">24</param>
                     </params>
                 </component>
                 <component cid="NSMonitor0">
