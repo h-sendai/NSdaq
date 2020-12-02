@@ -18,8 +18,8 @@
                   <outPort>nsreader_out</outPort>
                </outPorts>
                <params>
-                  <param pid="srcAddr">127.0.0.1</param>
-                  <param pid="srcPort">2222</param>
+                  <param pid="srcAddr">192.168.10.16</param>
+                  <param pid="srcPort">24</param>
                </params>
             </component>
 
@@ -68,7 +68,9 @@
                   <inPort from="Dispatcher0:dispatcher_out2">nsmonitor_in</inPort>
                </inPorts>
                <outPorts/>
-               <params/>
+               <params>
+                  <param pid="monitorUpdateRate">200</param>
+               </params>
             </component>
          </components>
       </daqGroup>
