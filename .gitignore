@@ -12,3 +12,7 @@ NSLogger/NSLoggerComp
 NSMonitor/NSMonitorComp
 NSReader/NSReaderComp
 Dispatcher/DispatcherComp
+rtc.conf
+omninames-*.log
+omninames-*.bak
+.confFilePath
