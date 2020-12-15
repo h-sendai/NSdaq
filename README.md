@@ -26,56 +26,35 @@ https://daqmw.kek.jp/ と通信できる環境ではこれでDAQ-Middlewareの�
 ### ROOTのセットアップ
 
 ヒストグラムを作るのに[ROOT](https://root.cern/)を使っています。
-ROOTのセットアップは[Install ROOT](https://root.cern/install/)
-に書かれています。
-CentOS 7の場合だと、ROOTが使っている依存ライブラリをインストールし、
-ROOTバイナリtarballを取得し、展開します。具体的作業は以下のようにすると
-よいと思います。
-
-#### 依存ライブラリのインストール
-
+ROOTのパッケージはFedoraが運営するEPEL (Extra Packages for Enterprise Linux)
+リポジトリにありますのでこれを利用するのが簡単です。
+以下のように作業します。
 ```
-root# rpm --quiet -q epel-release || yum -y install epel-release
-root# vi /etc/yum.repos.d/epel.repo
-enabled=1となっている箇所が１か所あるので
-enalbed=0に変更（不用意にepelからパッケージをダウンロード、あるいは
-既存パッケージをアップデートしないようにするため）
-
-root# yum install --enablerepo=epel git cmake3 gcc-c++ gcc binutils libX11-devel libXpm-devel libXft-devel libXext-devel openssl-devel
+root# yum install epel-release
+root# yum install root
 ```
+なんらかの理由でこの方法が使えない場合は[Install ROOT](https://root.cern/install/)
+を見てください。
 
-#### ROOTのダウンロードと設定
-
-[ROOT Releases](https://root.cern/install/all_releases/)から最新の
-日付をクリックし、CentOS 7用バイナリtar.gzファイルをダウンロードする。
-ダウンロード後 /usr/local 以下に展開する:
-
-```
-root# tar xf root_v6.XX.YY.Linux-centos7-x86_64-gcc4.8.tar.gz -C /usr/local
-```
-
-/etc/ld.so.conf.d/root.confを作成する:
-
-```
-root# echo /usr/local/root/lib > /etc/ld.so.conf.d/root.conf
-root# ldconfig
-```
-
-最後のldconfigはroot.confの設定を有効にするために実行します。
-リブート時には自動で実行されるので再起動後はldconfigを実行する必要は
-ありません。
-
-さらにROOTは、ROOTSYS環境変数が必要な場合があります(NSMonitorもそうなっています)。
+ROOTは、ROOTSYS環境変数が必要な場合があります(NSMonitorもそうなっています)。
 各自のshellでROOTSYS環境変数の値を/usr/local/rootに設定しておきます。
 ログインシェルにbashを使っているユーザー全員で設定していい場合は
 /etc/profile.d/root.shに
 
 ```
-ROOTSYS=/usr/local/root
+ROOTSYS=/usr
 export ROOTSYS
 ```
 
 と書いてログインしなおします。
+
+このままの状態ではEPELリポジトリが有効になっており、パッケージの更新
+yum updateなどでDAQ-Middlewareで必要としているomniORBについて、より
+新しいものに更新しようとしてエラーになることがあります。omniORBはパッケージ
+アップデート対象からはずします。設定は/etc/yum.confの最後に次の1行を追加します。
+```
+exclude=omniORB
+```
 
 ### ソースコードの取得とコンパイル
 
