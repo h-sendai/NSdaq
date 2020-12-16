@@ -53,7 +53,7 @@ yum updateなどでDAQ-Middlewareで必要としているomniORBについて、�
 新しいものに更新しようとしてエラーになることがあります。omniORBはパッケージ
 アップデート対象からはずします。設定は/etc/yum.confの最後に次の1行を追加します。
 ```
-exclude=omniORB
+exclude=omniORB*
 ```
 
 ### ソースコードの取得とコンパイル
