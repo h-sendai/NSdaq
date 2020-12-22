@@ -37,8 +37,10 @@ root# yum install root
 を見てください。
 
 ROOTは、ROOTSYS環境変数が必要な場合があります(NSMonitorもそうなっています)。
-各自のshellでROOTSYS環境変数の値を/usr/local/rootに設定しておきます。
-ログインシェルにbashを使っているユーザー全員で設定していい場合は
+各自のshellでROOTSYS環境変数の値を/usrに設定しておきます。
+(注: この/usrの値はインストールした場所により異なります。上のように
+EPELからインストールした場合は/usrと設定します（注終わり)。
+ログインシェルにbashを使っているユーザー全員で設定していい場合PELは
 /etc/profile.d/root.shに
 
 ```
