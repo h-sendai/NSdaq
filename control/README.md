@@ -25,6 +25,17 @@ set-registers csvファイル IPアドレス
 ./set-registers try00.csv 192.168.10.16
 ```
 
+``-v``オプションを付けると進捗状況を表示します。
+例:
+
+```
+% ./set-registers -v sample.csv
+---> trying user_area_0 0xffffff3c 0x10 (16) ... done
+---> trying user_area_1 0xffffff3d 0x20 (32) ... done
+---> trying user_area_2 0xffffff3e 0x30 (48) ... done
+---> trying user_area_3 0xffffff3f 0x40 (64) ... done
+```
+
 ## コマンドラインインタラクティブジョブ用プログラム
 
 起動方法
