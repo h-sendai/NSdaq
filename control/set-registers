@@ -1,0 +1,55 @@
+#!/usr/bin/python3
+
+import os
+import sys
+import time
+import argparse
+import csv
+import SitcpRbcp
+
+def print_postion_args():
+    global args
+    print(args.csv_file, args.ip_address)
+
+def main():
+    global args
+
+    parser = argparse.ArgumentParser(description = 'Set Registers via SiTCP RBCP (batch)', 
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('-d', 
+                        '--debug',
+                        dest = 'debug',
+                        action = 'store_true',
+                        help = 'debug.  not used')
+    parser.add_argument('-v', 
+                        '--verbose',
+                        dest = 'verbose',
+                        action = 'store_true',
+                        help = 'verbose')
+    parser.add_argument('csv_file')
+    parser.add_argument('ip_address', nargs = '?', default = '192.168.10.16',
+        help = 'IP address of target SiTCP.  default: 192.168.10.16')
+    args = parser.parse_args()
+    
+    format = dict()
+    format[1] = '>B'
+    format[2] = '>H'
+    format[4] = '>I'
+
+    rbcp = SitcpRbcp.SitcpRbcp()
+    
+    f = open(args.csv_file, 'r')
+    reader = csv.reader(filter(lambda row: row[0]!='#', f))
+    for row in reader:
+        name    = row[0]
+        address = int(row[1], 0) # 0: if prefix 0x, then interpret as hexadecimal
+        length  = int(row[2], 0)
+        value   = int(row[3], 0)
+        if args.verbose:
+            print('---> trying 0x%x 0x%x (%d) ... ' % (address, value, value), end = '')
+        rbcp.write_register_f(args.ip_address, address, format[length], value)
+        if args.verbose:
+            print('done')
+
+if __name__ == '__main__':
+    main()
