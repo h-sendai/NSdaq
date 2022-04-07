@@ -46,7 +46,7 @@ def main():
         length  = int(row[2], 0)
         value   = int(row[3], 0)
         if args.verbose:
-            print('---> trying 0x%x 0x%x (%d) ... ' % (address, value, value), end = '')
+            print('---> trying %s 0x%x 0x%x (%d) ... ' % (name, address, value, value), end = '')
         rbcp.write_register_f(args.ip_address, address, format[length], value)
         if args.verbose:
             print('done')
