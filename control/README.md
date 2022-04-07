@@ -25,6 +25,17 @@ set-registers csvファイル IPアドレス
 ./set-registers try00.csv 192.168.10.16
 ```
 
-# GUIプログラム
+## コマンドラインインタラクティブジョブ用プログラム
+
+起動方法
+
+```
+./cmdrbcp.py3
+```
+説明については
+https://github.com/h-sendai/SitcpRbcp/blob/master/py3/README.ja.md
+をご覧ください。
+
+## GUIプログラム
 
 unreleased yet
