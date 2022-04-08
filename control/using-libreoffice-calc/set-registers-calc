@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#rm -f /tmp/testfile
+#touch /tmp/testfile
+
+libreoffice --headless --convert-to csv --outdir /home/sendai /home/sendai/Registers.ods
+/home/sendai/src/NSdaq/control/set-registers /home/sendai/Registers.csv
