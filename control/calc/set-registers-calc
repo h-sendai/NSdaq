@@ -3,5 +3,25 @@
 CALC_DIR=/home/daq
 NSDAQ_DIR=/home/daq/NSdaq
 
-libreoffice --headless --convert-to csv --outdir $CALC_DIR ${CALC_DIR}/ns-registers.ods
+# libreoffice実行プロセスはなにもオプションを指定しないと
+# すでに起動しているプロセスを使って実行しようとする。
+# たとえば端末をふたつ開いて双方で
+# libreoffice --calc
+# と起動してもできるプロセスはひとつである。
+# Calcマクロで
+# shell("/path/to/program", , True)
+# とすると起動した/path/to/programが完了するまで
+# libreofficeのタスクが待機する。これはのぞましいが、
+# /path/to/program中でlibreofficeを起動するようにしておくと
+# 上記のようにデフォルトではプロセスは1個しかできない。
+# がそのlibreofficeプロセスは待機状態にあるので、デッドロック状態
+# が発生する。
+# 新規に別プロセスでlibreofficeを起動するには
+# -env:UserInstallation=file:///$HOME/.another-libreoffice
+# オプションを追加して起動する。
+
+# shell()第4引数Trueの効果を確かめるためのsleep
+# sleep 5
+
+libreoffice -env:UserInstallation=file:///$HOME/.another-libreoffice --headless --convert-to csv --outdir $CALC_DIR ${CALC_DIR}/ns-registers.ods
 ${NSDAQ_DIR}/control/set-registers ${CALC_DIR}/ns-registers.csv
