@@ -1,0 +1,24 @@
+REM  *****  BASIC  *****
+
+Sub Main
+    REM save this file
+    thisComponent.store()
+    
+    REM shell() function
+    REM running /bin/sleep 1
+    REM Argument: 1: command path
+    REM Argument: 2: Window Style
+    REM Argument: 3: command parameters as string
+    REM Argument: 4: bSync.  If true, wait until the shell process completes
+    REM https://help.libreoffice.org/4.4/Basic/Shell_Function_Runtime/ja
+    REM shell("/bin/sleep", , "2", True)
+    REM msgbox "Hello world"
+    
+    shell("/home/daq/NSdaq/control/calc/set-registers-calc", , , True)
+    REM shell("/home/daq/test.sh", , , True)
+    ThisComponent.getCurrentController.getFrame.createStatusIndicator.start("set registers: done", 20)
+    ThisComponent.getCurrentController.getFrame.createStatusIndicator.end()
+    wait 1000
+    ThisComponent.getCurrentController.getFrame.createStatusIndicator.start("", 20)
+    REM msgbox "set registers: done"
+End Sub
