@@ -23,5 +23,5 @@ NSDAQ_DIR=/home/daq/NSdaq
 # shell()第4引数Trueの効果を確かめるためのsleep
 # sleep 5
 
-libreoffice -env:UserInstallation=file:///$HOME/.another-libreoffice --headless --convert-to csv --outdir $CALC_DIR ${CALC_DIR}/ns-registers.ods
+libreoffice -env:UserInstallation=file:///$HOME/.another-libreoffice --headless --convert-to csv --outdir $CALC_DIR ${CALC_DIR}/ns-registers.ods > /dev/null
 ${NSDAQ_DIR}/control/set-registers ${CALC_DIR}/ns-registers.csv
