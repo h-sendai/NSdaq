@@ -79,7 +79,7 @@ cp NSdaq/control/calc/ns-registers-sample.ods ns-registers.ods
 
 ### LibreOffice Calcの準備
 
-CentOS 7: yum -y install libreoffice
+CentOS 7: yum -y install libreoffice python3
 
 CentOS Stream 8: yum -y install libreoffice-calc
 
