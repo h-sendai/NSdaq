@@ -133,8 +133,8 @@ ns-registers.ods中のマクロを
 2. /home/daq/NSDaq/control/set-registers-calcをマクロ関数shell()
 を使って起動する。第4引数にTrueを指定しているのでCalcはset-registers-calc
 が終了するまでCalcは停止する。set-registers-calcの中身:
-2.1 LibreOffice Calcを使ってCSVファイルに変換する
-2.2 control/set-registersでCSVファイルを読んでレジスタ値を設定する
+  1 LibreOffice Calcを使ってCSVファイルに変換する
+  2 control/set-registersでCSVファイルを読んでレジスタ値を設定する
 3. set-registers-calcが終了したら、ステータスバーに"set registers: done"と表示する。1秒後に表示は消える。
 
 ### ToDo
