@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#rm -f /tmp/testfile
-#touch /tmp/testfile
+CALC_DIR=/home/daq
+NSDAQ_DIR=/home/daq/NSdaq
 
-libreoffice --headless --convert-to csv --outdir /home/sendai /home/sendai/Registers.ods
-/home/sendai/src/NSdaq/control/set-registers /home/sendai/Registers.csv
+libreoffice --headless --convert-to csv --outdir $CALC_DIR ${CALC_DIR}/ns-registers.ods
+${NSDAQ_DIR}/control/set-registers ${CALC_DIR}/ns-registers.csv
