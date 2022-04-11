@@ -73,3 +73,9 @@ git clone https://github.com/h-sendai/NSdaq.git
 ```
 
 これで/home/daq/NSdaq/というディレクトリができてその中にコードがはいっている。
+
+## レジスタセットプログラム
+
+[control/](control/)以下にある。
+[control/README.md](control/README.md)も参照ください。
+
