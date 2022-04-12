@@ -1,0 +1,1 @@
+# LibreOffice マクロ (Python)
