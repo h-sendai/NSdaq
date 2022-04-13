@@ -36,6 +36,7 @@ def set_registers(*args):
 
     import SitcpRbcp
     rbcp = SitcpRbcp.SitcpRbcp()
+    rbcp.set_verify_mode()
 
     ip_address = '192.168.10.16'
     max_row = detect_last_used_row()
@@ -43,7 +44,18 @@ def set_registers(*args):
     doc = XSCRIPTCONTEXT.getDocument()
     sheet = doc.getSheets().getByIndex(0)
     for i in range(0, max_row):
-        name    = sheet.getCellByPosition(0, i).String 
+        col_a = sheet.getCellByPosition(0, i).String 
+        if col_a == '':
+            print('empty line')
+            continue
+        if col_a.startswith('#'):
+            # skip this row as comment line
+            print('comment line')
+            continue
+        if col_a == 'ip_address':
+            ip_address = sheet.getCellByPosition(1, i).String 
+            continue
+        name    = col_a
         address = int(sheet.getCellByPosition(1, i).String, 0)
         len     = int(sheet.getCellByPosition(2, i).String, 0)
         value   = int(sheet.getCellByPosition(3, i).String, 0) 
