@@ -159,9 +159,9 @@ int NSMonitor::daq_start()
     }
 
     //int m_hist_bin = 100;
-    int    m_hist_bin = 256;
+    int    m_hist_bin = 4096;
     double m_hist_min = 0.0;
-    double m_hist_max = 256.0;
+    double m_hist_max = 4096.0;
 
     gStyle->SetStatW(0.4);
     gStyle->SetStatH(0.2);
@@ -214,7 +214,9 @@ int NSMonitor::reset_InPort()
 
 int NSMonitor::fill_data(const unsigned char* mydata, const int size)
 {
-    for (int i = 0; i < size / 2; i++) {
+    int n_data = size / one_data_byte_size;
+    for (int i = 0; i < n_data; i++) {
+        // i: data index in this buffer.  numbered as data count
         // We don't implement separate decode function
         // because data format is very simple.
         // If we have more complicated format, we have to implement
@@ -222,11 +224,24 @@ int NSMonitor::fill_data(const unsigned char* mydata, const int size)
 
         // __attribute__((unused)): suppress "unused variable warning when compile
         // count and flag are not used for now
-        unsigned char __attribute__((unused)) count = (mydata[0+2*i] & 0x7F);
-        unsigned char __attribute__((unused)) flag  = ((mydata[0+2*i] & 0x80) >> 7);
-        unsigned char data = mydata[1+i*2];
+        // unsigned char __attribute__((unused)) count = (mydata[0+2*i] & 0x7F);
+        // unsigned char __attribute__((unused)) flag  = ((mydata[0+2*i] & 0x80) >> 7);
+        // unsigned char data = mydata[1+i*2];
+        m_NSdata.flag = (mydata[one_data_byte_size*i + 0] & 0x80) >> 7;
 
-        m_hist->Fill(data);
+        unsigned short *count_p;
+        count_p = (unsigned short *)&mydata[one_data_byte_size*i + 0];
+        m_NSdata.count = ntohs(*count_p) & 0xEFFF; // drop flag bit
+
+        unsigned short *data_p;
+        data_p = (unsigned short *)&mydata[one_data_byte_size*i + 2];
+        m_NSdata.data = ntohs(*data_p);
+        // XXX: very simple data check
+        if (m_NSdata.data >= 4096) {
+            std::cerr << "Invalid data: " << m_NSdata.data << std::endl;
+        }
+
+        m_hist->Fill(m_NSdata.data);
     }
 
     return 0;
