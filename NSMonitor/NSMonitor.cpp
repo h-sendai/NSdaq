@@ -231,7 +231,7 @@ int NSMonitor::fill_data(const unsigned char* mydata, const int size)
 
         unsigned short *count_p;
         count_p = (unsigned short *)&mydata[one_data_byte_size*i + 0];
-        m_NSdata.count = ntohs(*count_p) & 0xEFFF; // drop flag bit
+        m_NSdata.count = ntohs(*count_p) & 0x7FFF; // drop flag bit
 
         unsigned short *data_p;
         data_p = (unsigned short *)&mydata[one_data_byte_size*i + 2];
