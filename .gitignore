@@ -15,4 +15,5 @@ Dispatcher/DispatcherComp
 rtc.conf
 omninames-*.log
 omninames-*.bak
+omninames-*.dat
 .confFilePath
