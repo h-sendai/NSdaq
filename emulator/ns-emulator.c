@@ -173,7 +173,7 @@ int usage(void)
 "-s sleep_usec: sleep useconds after write\n"
 "-p port:       port number (1234)\n"
 "-q:            enable quick ack\n"
-"-r rate:       data send rate (bytes/sec).  k for kilo, m for mega\n"
+"-r rate:       data send rate (bytes/sec).  k for kilo, m for mega (40MB/s)\n"
 "-S so_sndbuf:  set socket send buffer size\n"
 "-R sleep_sec:  sleep_sec after receive SIGUSR1\n";
 
@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
     int c;
     int bufsize = 16*1024;
     int sleep_usec = 0;
-    int rate = 0;
+    int rate = 40*1024*1024;
     int sleep_to_resume_sec = 5;
 
     while ( (c = getopt(argc, argv, "b:dhp:qr:R:s:S:")) != -1) {
