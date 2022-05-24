@@ -214,7 +214,7 @@ int NSMonitor::reset_InPort()
 
 int NSMonitor::fill_data(const unsigned char* mydata, const int size)
 {
-    int n_data = size / one_data_byte_size;
+    int n_data = size / ONE_DATA_BYTE_SIZE;
     for (int i = 0; i < n_data; i++) {
         // i: data index in this buffer.  numbered as data count
         // We don't implement separate decode function
@@ -227,14 +227,14 @@ int NSMonitor::fill_data(const unsigned char* mydata, const int size)
         // unsigned char __attribute__((unused)) count = (mydata[0+2*i] & 0x7F);
         // unsigned char __attribute__((unused)) flag  = ((mydata[0+2*i] & 0x80) >> 7);
         // unsigned char data = mydata[1+i*2];
-        m_NSdata.flag = (mydata[one_data_byte_size*i + 0] & 0x80) >> 7;
+        m_NSdata.flag = (mydata[ONE_DATA_BYTE_SIZE*i + 0] & 0x80) >> 7;
 
         unsigned short *count_p;
-        count_p = (unsigned short *)&mydata[one_data_byte_size*i + 0];
+        count_p = (unsigned short *)&mydata[ONE_DATA_BYTE_SIZE*i + 0];
         m_NSdata.count = ntohs(*count_p) & 0x7FFF; // drop flag bit
 
         unsigned short *data_p;
-        data_p = (unsigned short *)&mydata[one_data_byte_size*i + 2];
+        data_p = (unsigned short *)&mydata[ONE_DATA_BYTE_SIZE*i + 2];
         m_NSdata.data = ntohs(*data_p);
         // XXX: very simple data check
         if (m_NSdata.data >= 4096) {

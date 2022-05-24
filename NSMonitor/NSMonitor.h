@@ -74,7 +74,7 @@ private:
     unsigned char m_recv_data[DATA_BUF_SIZE];
     unsigned int  m_event_byte_size;
     
-    const static int one_data_byte_size = 4;
+    const static int ONE_DATA_BYTE_SIZE = 4;
     struct NSData m_NSdata;
 
     bool m_debug;
