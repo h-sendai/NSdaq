@@ -52,6 +52,7 @@ int set_data_to_buf(unsigned char *buf, int bufsize)
     for (int i = 0; i < n_data; ++i) {
         *(unsigned short *)ptr = htons((count & 0x7FFF));
         ptr += 2;
+        data = data & 0x0fff;
         *(unsigned short *)ptr = htons(data);
         ptr += 2;
         count ++;
